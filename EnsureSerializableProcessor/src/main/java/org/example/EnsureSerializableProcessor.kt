@@ -47,6 +47,7 @@ class EnsureSerializableProcessor(private val environment: SymbolProcessorEnviro
     }
 
     private fun hasSerializableInterface(node: KSClassDeclaration): Boolean {
+        // TODO (Fix  it. It doesn't work for case, when class doesn't implement Serializable, but parent implement)
         return node.superTypes
             .map { it.resolve().declaration.qualifiedName?.asString() }
             .contains(Serializable::class.java.typeName)
